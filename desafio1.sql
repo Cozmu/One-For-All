@@ -49,9 +49,9 @@ CREATE TABLE SpotifyClone.playback_history(
 ) engine = InnoDB;
 
 CREATE TABLE SpotifyClone.following(
-  `id` INTEGER AUTO_INCREMENT PRIMARY KEY NOT NULL,
   user_id INT NOT NULL,
   artist_id INT,
+  CONSTRAINT PRIMARY KEY(user_id, artist_id),
   FOREIGN KEY (user_id) REFERENCES users(`id`),
   FOREIGN KEY (artist_id) REFERENCES artists(`id`)
 ) engine = InnoDB;
@@ -139,10 +139,8 @@ VALUES
   (4, 4),
   (5, 5),
   (5, 6),
-  (6, NULL),
+  (6, 6),
+  (6, 1),
   (7, 6),
-  (8, NULL),
   (9, 3),
-  (10, NULL);
-
-SELECT * FROM `SpotifyClone`.following;
+  (10, 2);
