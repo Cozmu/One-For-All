@@ -16,7 +16,7 @@ CREATE TABLE SpotifyClone.artists(
 
 CREATE TABLE SpotifyClone.albums(
   `id` INTEGER AUTO_INCREMENT PRIMARY KEY NOT NULL,
-  album_name VARCHAR(100) NOT NULL,
+  albums_name VARCHAR(100) NOT NULL,
   artist_id INT NOT NULL,
   release_date INT NOT NULL,
   FOREIGN KEY (artist_id) REFERENCES artists(`id`)
@@ -51,9 +51,9 @@ CREATE TABLE SpotifyClone.playback_history(
 CREATE TABLE SpotifyClone.following(
   `id` INTEGER AUTO_INCREMENT PRIMARY KEY NOT NULL,
   user_id INT NOT NULL,
-  artists_id INT NOT NULL,
+  artist_id INT,
   FOREIGN KEY (user_id) REFERENCES users(`id`),
-  FOREIGN KEY (artists_id) REFERENCES artists(`id`)
+  FOREIGN KEY (artist_id) REFERENCES artists(`id`)
 ) engine = InnoDB;
 
 INSERT INTO `SpotifyClone`.plans(`types`, plan_value) 
@@ -72,7 +72,7 @@ VALUES
   ('Blind Guardian'),
   ('Nina Simone');
 
-INSERT INTO `SpotifyClone`.albums(album_name, artist_id, release_date) 
+INSERT INTO `SpotifyClone`.albums(albums_name, artist_id, release_date) 
 VALUES
   ('Renaissance', 1, 2022),
   ('Jazz', 2, 1978),
@@ -128,7 +128,7 @@ VALUES
   (9, 10, '2022-02-24 21:14:22'),
   (10, 3, '2015-12-13 08:30:22');
 
-INSERT INTO SpotifyClone.following(user_id, artists_id)
+INSERT INTO SpotifyClone.following(user_id, artist_id)
 VALUES
   (1, 1),
   (1, 2),
@@ -139,5 +139,10 @@ VALUES
   (4, 4),
   (5, 5),
   (5, 6),
-  (7, 6);
+  (6, NULL),
+  (7, 6),
+  (8, NULL),
+  (9, 3),
+  (10, NULL);
 
+SELECT * FROM `SpotifyClone`.following;
